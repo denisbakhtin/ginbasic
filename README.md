@@ -24,7 +24,9 @@ cd ginbasic
 go get .
 ```
 Copy sample config `cp config/config.json.example config/config.json`, create postgresql database, modify config/config.json accordingly.
+
 Type `go run main.go -migrate=up` to create users and pages tables.
+
 `go run main.go` to launch web server.
 
 # Deployment
