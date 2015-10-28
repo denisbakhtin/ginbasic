@@ -1,0 +1,10 @@
+{{define "admin/sidebar"}}
+<aside id="sidebar">
+  <div class="well well-sm">
+  <ul class="nav nav-pills nav-stacked">
+    <li class="{{isActive .Active "users"}}"><a href="/admin/users">Users</a></li>
+    <li class="{{isActive .Active "pages"}}"><a href="/admin/pages">Pages</a></li>
+  </ul>
+  </div>
+</aside>
+{{end}}
