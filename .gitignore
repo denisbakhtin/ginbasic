@@ -1,4 +1,3 @@
 config/config.json
 git_save
 *.rice-box.go
-public/uploads/*
