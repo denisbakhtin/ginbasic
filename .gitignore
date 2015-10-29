@@ -1,3 +1,4 @@
 config/config.json
 git_save
+ginbasic
 *.rice-box.go
