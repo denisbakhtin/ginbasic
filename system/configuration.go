@@ -3,6 +3,8 @@ package system
 import (
 	"encoding/json"
 	"fmt"
+	"os"
+	"path"
 
 	"github.com/gin-gonic/gin"
 )
@@ -14,6 +16,7 @@ type Configs struct {
 }
 
 type Config struct {
+	Uploads       string `json:"uploads"`
 	SessionSecret string `json:"session_secret"`
 	CsrfSecret    string `json:"csrf_secret"`
 	Database      DatabaseConfig
@@ -44,6 +47,13 @@ func LoadConfig(data []byte) {
 		config = &configs.Test
 	default:
 		panic(fmt.Sprintf("Unknown gin mode %s", gin.Mode()))
+	}
+	if !path.IsAbs(config.Uploads) {
+		workingDir, err := os.Getwd()
+		if err != nil {
+			panic(err)
+		}
+		config.Uploads = path.Join(workingDir, config.Uploads)
 	}
 }
 

@@ -43,7 +43,10 @@ func UserCreate(c *gin.Context) {
 			return
 		}
 		if err := user.Insert(); err != nil {
-			c.HTML(http.StatusInternalServerError, "errors/500", nil)
+			session := sessions.Default(c)
+			session.AddFlash(err.Error())
+			session.Save()
+			c.Redirect(http.StatusSeeOther, "/admin/new_user")
 			return
 		}
 		c.Redirect(http.StatusFound, "/admin/users")

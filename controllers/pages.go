@@ -3,8 +3,11 @@ package controllers
 import (
 	"net/http"
 
+	"html/template"
+
 	"github.com/denisbakhtin/ginbasic/models"
 	"github.com/gin-gonic/gin"
+	"github.com/russross/blackfriday"
 )
 
 // GET /pages/:id route
@@ -20,6 +23,6 @@ func PageGet(c *gin.Context) {
 	}
 	c.HTML(http.StatusOK, "pages/show", gin.H{
 		"Title":       page.Name,
-		"Description": page.Description,
+		"Description": template.HTML(string(blackfriday.MarkdownCommon([]byte(page.Description)))),
 	})
 }

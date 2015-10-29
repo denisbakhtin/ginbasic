@@ -35,6 +35,7 @@ func main() {
 	setTemplate(router)
 	setSessions(router)
 
+	router.StaticFS("/uploads", http.Dir(system.GetConfig().Uploads))
 	router.StaticFS("/public", rice.MustFindBox("public").HTTPBox()) //<3 rice
 
 	router.Use(SharedData())
@@ -52,6 +53,8 @@ func main() {
 	authorized := router.Group("/admin")
 	authorized.Use(AuthRequired())
 	authorized.GET("/", admin.AdminGet)
+
+	authorized.POST("/upload", admin.UploadPost) //image upload
 
 	authorized.GET("/users", admin.UserIndex)
 	authorized.GET("/new_user", admin.UserNew)

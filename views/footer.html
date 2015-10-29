@@ -12,6 +12,14 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/parsley.js/2.0.2/parsley.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="/public/js/ace.js"></script>
+    <script src="/public/js/bootstrap-markdown-editor.js"></script>
+    <script>
+      $('#markdown-editor').markdownEditor({
+        imageUpload: true,
+        uploadPath: '/admin/upload',
+      });
+    </script>
   </body>
 </html>
 {{end}}
