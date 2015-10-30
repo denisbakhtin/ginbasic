@@ -16,6 +16,14 @@ It consists of the following core components:
 - Bootstrap Markdown Editor with image upload - https://github.com/inacho/bootstrap-markdown-editor
 - blackfriday - markdown processor - https://github.com/russross/blackfriday 
 
+# Screenshots
+## Home page
+![](/public/images/screenshot_home.jpg)
+## Dashboard
+![](/public/images/screenshot_dashboard.jpg)
+## Markdown editor
+![](/public/images/screenshot_markdown.jpg)
+
 # Usage
 ```
 git clone https://github.com/denisbakhtin/ginbasic.git

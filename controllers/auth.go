@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/Sirupsen/logrus"
+	"github.com/denisbakhtin/ginbasic/helpers"
 	"github.com/denisbakhtin/ginbasic/models"
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
@@ -12,13 +13,13 @@ import (
 
 // GET /signin route
 func SignInGet(c *gin.Context) {
+	h := helpers.DefaultH(c)
+	h["Title"] = "Basic GIN web-site signin form"
+	h["Active"] = "signin"
 	session := sessions.Default(c)
-	flashes := session.Flashes()
+	h["Flash"] = session.Flashes()
 	session.Save()
-	c.HTML(http.StatusOK, "auth/signin", gin.H{
-		"Title": "Basic GIN web-site signin form",
-		"Flash": flashes,
-	})
+	c.HTML(http.StatusOK, "auth/signin", h)
 }
 
 // POST /signin route, authenticates user
@@ -55,13 +56,13 @@ func SignInPost(c *gin.Context) {
 
 // GET /signup route
 func SignUpGet(c *gin.Context) {
+	h := helpers.DefaultH(c)
+	h["Title"] = "Basic GIN web-site signup form"
+	h["Active"] = "signup"
 	session := sessions.Default(c)
-	flashes := session.Flashes()
+	h["Flash"] = session.Flashes()
 	session.Save()
-	c.HTML(http.StatusOK, "auth/signup", gin.H{
-		"Title": "Basic GIN web-site signup form",
-		"Flash": flashes,
-	})
+	c.HTML(http.StatusOK, "auth/signup", h)
 }
 
 // POST /signup route, creates new user

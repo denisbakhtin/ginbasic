@@ -5,6 +5,7 @@ import (
 
 	"html/template"
 
+	"github.com/denisbakhtin/ginbasic/helpers"
 	"github.com/denisbakhtin/ginbasic/models"
 	"github.com/gin-gonic/gin"
 	"github.com/russross/blackfriday"
@@ -21,8 +22,9 @@ func PageGet(c *gin.Context) {
 		c.HTML(http.StatusNotFound, "errors/404", nil)
 		return
 	}
-	c.HTML(http.StatusOK, "pages/show", gin.H{
-		"Title":       page.Name,
-		"Description": template.HTML(string(blackfriday.MarkdownCommon([]byte(page.Description)))),
-	})
+	h := helpers.DefaultH(c)
+	h["Title"] = page.Name
+	h["Description"] = template.HTML(string(blackfriday.MarkdownCommon([]byte(page.Description))))
+	h["Active"] = "pages"
+	c.HTML(http.StatusOK, "pages/show", h)
 }

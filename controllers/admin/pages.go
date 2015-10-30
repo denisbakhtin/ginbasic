@@ -3,6 +3,7 @@ package admin
 import (
 	"net/http"
 
+	"github.com/denisbakhtin/ginbasic/helpers"
 	"github.com/denisbakhtin/ginbasic/models"
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
@@ -15,23 +16,23 @@ func PageIndex(c *gin.Context) {
 		c.HTML(http.StatusInternalServerError, "errors/500", nil)
 		return
 	}
-	c.HTML(http.StatusOK, "admin/pages/index", gin.H{
-		"Title":  "List of pages",
-		"List":   list,
-		"Active": "pages",
-	})
+	h := helpers.DefaultH(c)
+	h["Title"] = "List of pages"
+	h["List"] = list
+	h["Active"] = "pages"
+	c.HTML(http.StatusOK, "admin/pages/index", h)
 }
 
 // GET page creation form
 func PageNew(c *gin.Context) {
+	h := helpers.DefaultH(c)
+	h["Title"] = "New page"
+	h["Active"] = "pages"
 	session := sessions.Default(c)
-	flashes := session.Flashes()
+	h["Flash"] = session.Flashes()
 	session.Save()
-	c.HTML(http.StatusOK, "admin/pages/form", gin.H{
-		"Title":  "New page",
-		"Flash":  flashes,
-		"Active": "pages",
-	})
+
+	c.HTML(http.StatusOK, "admin/pages/form", h)
 }
 
 // POST page creation form
@@ -58,15 +59,14 @@ func PageEdit(c *gin.Context) {
 		c.HTML(http.StatusNotFound, "errors/404", nil)
 		return
 	}
+	h := helpers.DefaultH(c)
+	h["Title"] = "Edit page"
+	h["Active"] = "pages"
+	h["Page"] = page
 	session := sessions.Default(c)
-	flashes := session.Flashes()
+	h["Flash"] = session.Flashes()
 	session.Save()
-	c.HTML(http.StatusOK, "admin/pages/form", gin.H{
-		"Title":  "Edit page",
-		"Flash":  flashes,
-		"Page":   page,
-		"Active": "pages",
-	})
+	c.HTML(http.StatusOK, "admin/pages/form", h)
 }
 
 // POST page update form

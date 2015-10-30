@@ -3,13 +3,13 @@ package controllers
 import (
 	"net/http"
 
+	"github.com/denisbakhtin/ginbasic/helpers"
 	"github.com/gin-gonic/gin"
 )
 
 func HomeGet(c *gin.Context) {
-	user, _ := c.Get("User")
-	c.HTML(http.StatusOK, "home/show", gin.H{
-		"Title": "Welcome to basic GIN web-site",
-		"User":  user,
-	})
+	h := helpers.DefaultH(c)
+	h["Title"] = "Welcome to basic GIN web-site"
+	h["Active"] = "home"
+	c.HTML(http.StatusOK, "home/show", h)
 }

@@ -11,19 +11,19 @@
         {{range .Flash}}
           <div class="alert alert-danger">{{.}}</div><p>
         {{end}}
-        <input type="hidden" name="id" value="{{if .User}}{{.User.Id}}{{end}}" >
+        <input type="hidden" name="id" value="{{.User.Id}}" >
 
         <div class="form-group">
           <label class="col-md-2 control-label" for="name">Name</label>  
           <div class="col-md-10">
-            <input id="name" name="name" value="{{if .User}}{{.User.Name}}{{end}}" placeholder="User name" class="form-control input-md" required="" data-parsley-required-message="Please enter user name">    
+            <input id="name" name="name" value="{{.User.Name}}" placeholder="User name" class="form-control input-md" required="" data-parsley-required-message="Please enter user name">    
           </div>
         </div>
 
         <div class="form-group">
           <label class="col-md-2 control-label" for="email">Email</label>  
           <div class="col-md-10">
-            <input id="email" name="email" value="{{if .User}}{{.User.Email}}{{end}}" placeholder="User email" class="form-control input-md" required="" data-parsley-required-message="Please enter user email">    
+            <input id="email" name="email" value="{{.User.Email}}" placeholder="User email" class="form-control input-md" required="" data-parsley-required-message="Please enter user email">    
           </div>
         </div>
 

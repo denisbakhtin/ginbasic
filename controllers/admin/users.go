@@ -3,6 +3,7 @@ package admin
 import (
 	"net/http"
 
+	"github.com/denisbakhtin/ginbasic/helpers"
 	"github.com/denisbakhtin/ginbasic/models"
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
@@ -15,23 +16,22 @@ func UserIndex(c *gin.Context) {
 		c.HTML(http.StatusInternalServerError, "errors/500", nil)
 		return
 	}
-	c.HTML(http.StatusOK, "admin/users/index", gin.H{
-		"Title":  "List of users",
-		"List":   list,
-		"Active": "users",
-	})
+	h := helpers.DefaultH(c)
+	h["Title"] = "List of users"
+	h["Active"] = "users"
+	h["List"] = list
+	c.HTML(http.StatusOK, "admin/users/index", h)
 }
 
 // GET user creation form
 func UserNew(c *gin.Context) {
+	h := helpers.DefaultH(c)
+	h["Title"] = "New user"
+	h["Active"] = "users"
 	session := sessions.Default(c)
-	flashes := session.Flashes()
+	h["Flash"] = session.Flashes()
 	session.Save()
-	c.HTML(http.StatusOK, "admin/users/form", gin.H{
-		"Title":  "New user",
-		"Flash":  flashes,
-		"Active": "users",
-	})
+	c.HTML(http.StatusOK, "admin/users/form", h)
 }
 
 // POST user creation form
@@ -65,16 +65,13 @@ func UserEdit(c *gin.Context) {
 		c.HTML(http.StatusNotFound, "errors/404", nil)
 		return
 	}
-	user.Password = ""
+	h := helpers.DefaultH(c)
+	h["Title"] = "Edit user"
+	h["Active"] = "users"
 	session := sessions.Default(c)
-	flashes := session.Flashes()
+	h["Flash"] = session.Flashes()
 	session.Save()
-	c.HTML(http.StatusOK, "admin/users/form", gin.H{
-		"Title":  "Edit user",
-		"Flash":  flashes,
-		"User":   user,
-		"Active": "users",
-	})
+	c.HTML(http.StatusOK, "admin/users/form", h)
 }
 
 // POST user update form
