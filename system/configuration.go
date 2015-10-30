@@ -19,6 +19,7 @@ type Config struct {
 	Uploads       string `json:"uploads"`
 	SessionSecret string `json:"session_secret"`
 	CsrfSecret    string `json:"csrf_secret"`
+	SignupEnabled bool   `json:"signup_enabled"` //always set to false in release mode (config.json)
 	Database      DatabaseConfig
 }
 

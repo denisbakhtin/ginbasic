@@ -42,9 +42,13 @@ func main() {
 	router.Use(SharedData())
 
 	router.GET("/", controllers.HomeGet)
+	router.NoRoute(controllers.NotFound)
+	router.NoMethod(controllers.MethodNotAllowed)
 
-	router.GET("/signup", controllers.SignUpGet)
-	router.POST("/signup", controllers.SignUpPost)
+	if system.GetConfig().SignupEnabled {
+		router.GET("/signup", controllers.SignUpGet)
+		router.POST("/signup", controllers.SignUpPost)
+	}
 	router.GET("/signin", controllers.SignInGet)
 	router.POST("/signin", controllers.SignInPost)
 	router.GET("/logout", controllers.LogoutGet)
@@ -168,7 +172,9 @@ func SharedData() gin.HandlerFunc {
 				c.Set("User", user)
 			}
 		}
-		c.Set("Uri", c.Request.RequestURI) //current uri
+		if system.GetConfig().SignupEnabled {
+			c.Set("SignupEnabled", true)
+		}
 		c.Next()
 	}
 }

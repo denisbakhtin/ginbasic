@@ -29,9 +29,11 @@ func DefaultH(c *gin.Context) gin.H {
 	if u, ok := user.(*models.User); ok {
 		u.Password = "" //clear password hash
 	}
+	signupEnabled, _ := c.Get("SignupEnabled")
 	return gin.H{
-		"ActiveUser": user, //signed in models.User
-		"Active":     "",   //active uri shortening for menu item highlight
-		"Title":      "",   //page title:w
+		"ActiveUser":    user,          //signed in models.User
+		"Active":        "",            //active uri shortening for menu item highlight
+		"Title":         "",            //page title:w
+		"SignupEnabled": signupEnabled, //signup route is enabled (otherwise everyone can signup ;)
 	}
 }

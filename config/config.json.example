@@ -1,7 +1,9 @@
 {
   "debug": {
     "uploads": "public/uploads",
-    "secret": "some-session-secret-phrase",
+    "session_secret": "session-secret-phrase",
+    "csrf_secret": "csrf-secret-phrase",
+    "signup_enabled": true,
     "database": {
       "host": "192.168.0.1",
       "name": "ginbasic_dev",
@@ -11,7 +13,9 @@
   },
   "release": {
     "uploads": "path_to_uploads_dir",
-    "secret": "some-session-secret-phrase",
+    "session_secret": "session-secret-phrase",
+    "csrf_secret": "csrf-secret-phrase",
+    "signup_enabled": false, 
     "database": {
       "host": "192.168.0.1",
       "name": "ginbasic_dev",
@@ -21,7 +25,9 @@
   },
   "test": {
     "uploads": "public/uploads",
-    "secret": "some-session-secret-phrase",
+    "session_secret": "session-secret-phrase",
+    "csrf_secret": "csrf-secret-phrase",
+    "signup_enabled": true,
     "database": {
       "host": "192.168.0.1",
       "name": "ginbasic_dev",

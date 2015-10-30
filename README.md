@@ -23,6 +23,8 @@ It consists of the following core components:
 ![](/public/images/screenshot_dashboard.jpg)
 ## Markdown editor
 ![](/public/images/screenshot_markdown.jpg)
+## Fancy 404, 405, 500 error pages
+![](/public/images/screenshot_error.jpg)
 
 # Usage
 ```

@@ -13,7 +13,7 @@
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="{{isActive .Active "home"}}"><a href="/">Home</a></li>
+        <li class="{{isActive .Active "home"}}"><a href="/"><i class="glyphicon glyphicon-home indent"></i>Home</a></li>
       </ul>
       {{if .ActiveUser}}
       <ul class="nav navbar-nav navbar-right">
@@ -21,13 +21,15 @@
           <a href="/admin"><i class="glyphicon glyphicon-cog indent"></i>Dashboard</a>
         </li>
         <li>
-          <a href="/logout"><i class="glyphicon glyphicon-off indent"></i>Logout</a>
+          <a href="/logout"><i class="glyphicon glyphicon-log-out indent"></i>Logout</a>
         </li>
       </ul>
       {{else}}
       <ul class="nav navbar-nav navbar-right">
-        <li class="{{isActive .Active "signin"}}"><a href="/signin">Sign In</a></li>
-        <li class="{{isActive .Active "signup"}}"><a href="/signup">Sign Up</a></li>
+        <li class="{{isActive .Active "signin"}}"><a href="/signin"><i class="glyphicon glyphicon-log-in indent"></i>Sign In</a></li>
+        {{if .SignupEnabled}}
+        <li class="{{isActive .Active "signup"}}"><a href="/signup"><i class="glyphicon glyphicon-edit indent"></i>Sign Up</a></li>
+        {{end}}
       </ul>
       {{end}}				
     </div><!--/.nav-collapse -->

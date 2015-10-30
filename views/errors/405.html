@@ -1,12 +1,12 @@
-{{define "errors/500"}}
+{{define "errors/405"}}
 {{template "header" .}}
 {{template "navbar" .}}
 <div class="container" role="main">		
   <div class="jumbotron">
-    <h1>500 Error</h1>
+    <h1>405 Error</h1>
     <div class="description">
       <i class="glyphicon glyphicon-exclamation-sign indent"></i>
-      Oops, something went wrong!
+      Oops, request method not allowed!
     </div>
   </div>
 </div>
