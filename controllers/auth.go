@@ -29,12 +29,14 @@ func SignInPost(c *gin.Context) {
 	if err := c.Bind(user); err == nil {
 		userDB, _ := models.GetUserByEmail(user.Email)
 		if userDB.Id == 0 {
+			logrus.Errorf("Login error, IP: %s, Email: %s", c.ClientIP(), user.Email)
 			session.AddFlash("Email or password incorrect")
 			session.Save()
 			c.Redirect(http.StatusFound, "/signin")
 			return
 		}
 		if err := bcrypt.CompareHashAndPassword([]byte(userDB.Password), []byte(user.Password)); err != nil {
+			logrus.Errorf("Login error, IP: %s, Email: %s", c.ClientIP(), user.Email)
 			session.AddFlash("Email or password incorrect")
 			session.Save()
 			c.Redirect(http.StatusFound, "/signin")
