@@ -5,7 +5,7 @@ Provides essentials that most web applications need - MVC pattern, user authoris
 
 It consists of the following core components:
 
-- GIN - A web microframework for Golang - https://github.com/gin-gonic/gin
+- GIN - A web microframework (with best performance atm) for Golang - https://github.com/gin-gonic/gin
 - GIN middlewares [gin-csrf](https://github.com/utrack/gin-csrf), [gin/contrib/sessions](https://github.com/gin-gonic/contrib/tree/master/sessions)
 - pq - Postgres driver for the Go language - https://github.com/lib/pq
 - sqlx - Relational database access interface - https://github.com/jmoiron/sqlx
