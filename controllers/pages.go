@@ -14,11 +14,7 @@ import (
 // GET /pages/:id route
 func PageGet(c *gin.Context) {
 	page, err := models.GetPage(c.Param("id"))
-	if err != nil {
-		c.HTML(http.StatusInternalServerError, "errors/500", nil)
-		return
-	}
-	if !page.Published {
+	if err != nil || !page.Published {
 		c.HTML(http.StatusNotFound, "errors/404", nil)
 		return
 	}

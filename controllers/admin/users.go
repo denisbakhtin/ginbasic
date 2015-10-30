@@ -68,6 +68,7 @@ func UserEdit(c *gin.Context) {
 	h := helpers.DefaultH(c)
 	h["Title"] = "Edit user"
 	h["Active"] = "users"
+	h["User"] = user
 	session := sessions.Default(c)
 	h["Flash"] = session.Flashes()
 	session.Save()

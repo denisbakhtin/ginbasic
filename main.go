@@ -3,7 +3,6 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"html/template"
 	"net/http"
 	"os"
@@ -74,15 +73,6 @@ func main() {
 	authorized.GET("/pages/:id/edit", admin.PageEdit)
 	authorized.POST("/pages/:id/edit", admin.PageUpdate)
 	authorized.POST("/pages/:id/delete", admin.PageDelete)
-	/*
-	   router.GET("/someGet", getting)
-	   router.POST("/somePost", posting)
-	   router.PUT("/somePut", putting)
-	   router.DELETE("/someDelete", deleting)
-	   router.PATCH("/somePatch", patching)
-	   router.HEAD("/someHead", head)
-	   router.OPTIONS("/someOptions", options)
-	*/
 
 	// Listen and server on 0.0.0.0:8080
 	router.Run(":8080")
@@ -153,7 +143,7 @@ func setSessions(router *gin.Engine) {
 	router.Use(sessions.Sessions("gin-session", store))
 	//https://github.com/utrack/gin-csrf
 	router.Use(csrf.Middleware(csrf.Options{
-		Secret: config.CsrfSecret,
+		Secret: config.SessionSecret,
 		ErrorFunc: func(c *gin.Context) {
 			c.String(400, "CSRF token mismatch")
 			c.Abort()
@@ -185,7 +175,8 @@ func AuthRequired() gin.HandlerFunc {
 		if user, _ := c.Get("User"); user != nil {
 			c.Next()
 		} else {
-			c.AbortWithError(http.StatusForbidden, fmt.Errorf("Access forbidden"))
+			c.HTML(http.StatusForbidden, "errors/403", nil)
+			c.Abort()
 		}
 	}
 }

@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/denisbakhtin/ginbasic/models"
 	"github.com/gin-gonic/gin"
 )
 
@@ -26,9 +25,6 @@ func DateTime(t time.Time) string {
 //DefaultH returns common to all pages template data
 func DefaultH(c *gin.Context) gin.H {
 	user, _ := c.Get("User")
-	if u, ok := user.(*models.User); ok {
-		u.Password = "" //clear password hash
-	}
 	signupEnabled, _ := c.Get("SignupEnabled")
 	return gin.H{
 		"ActiveUser":    user,          //signed in models.User
