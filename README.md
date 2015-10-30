@@ -13,8 +13,16 @@ It consists of the following core components:
 - go.rice - Asset packaging tool for easy deployment - https://github.com/GeertJohan/go.rice
 - logrus - advanced Go logger - https://github.com/Sirupsen/logrus
 - Twitter Bootstrap - popular HTML, CSS, JS framework for developing responsive, mobile first web projects - http://getbootstrap.com
+- Parsley JS - form validation - http://parsleyjs.org
 - Bootstrap Markdown Editor with image upload - https://github.com/inacho/bootstrap-markdown-editor
 - blackfriday - markdown processor - https://github.com/russross/blackfriday 
+
+# TODO
+Server-side model validation with https://godoc.org/gopkg.in/bluesuncorp/validator.v5
+
+i18n (probably)
+
+Gorbac role-based access control (may be) - https://github.com/mikespook/gorbac
 
 # Screenshots
 ## Home page
