@@ -11,7 +11,7 @@ import (
 
 // GET user list
 func UserIndex(c *gin.Context) {
-	list, err := models.GetUserList()
+	list, err := models.GetUsers()
 	if err != nil {
 		c.HTML(http.StatusInternalServerError, "errors/500", nil)
 		return

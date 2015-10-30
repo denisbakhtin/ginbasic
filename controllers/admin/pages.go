@@ -11,7 +11,7 @@ import (
 
 // GET page list
 func PageIndex(c *gin.Context) {
-	list, err := models.GetPageList()
+	list, err := models.GetPages()
 	if err != nil {
 		c.HTML(http.StatusInternalServerError, "errors/500", nil)
 		return
